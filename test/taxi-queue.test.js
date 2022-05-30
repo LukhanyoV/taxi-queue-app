@@ -58,25 +58,6 @@ describe('The taxi queue app', function() {
 
 	});
 
-	// it ('should not allow the taxi queue to be less than 0', function() {
-
-	// 	const taxiQueue = TaxiQueue();
-
-	// 	taxiQueue.joinQueue();
-	// 	taxiQueue.joinQueue();
-	// 	taxiQueue.joinQueue();
-
-	// 	taxiQueue.leaveQueue();
-	// 	taxiQueue.leaveQueue();
-	// 	taxiQueue.leaveQueue();
-	// 	taxiQueue.leaveQueue();
-	// 	taxiQueue.leaveQueue();
-
-	// 	assert.equal(0, taxiQueue.queueLength());
-
-	// });
-
-
 	it ('should allow taxis to leave the queue if there is enough passengers queueing', function() {
 
 		const taxiQueue = TaxiQueue();
@@ -179,5 +160,32 @@ describe('The taxi queue app', function() {
 		assert.equal(15, taxiQueue.queueLength());
 		assert.equal(0, taxiQueue.taxiQueueLength());
 
+	});
+
+	it ('should initialize the people and taxi queue count', function() {
+
+		const taxiQueue = TaxiQueue(3,36);
+
+		// get the initialized taxi counter and people counter
+		assert.equal(36, taxiQueue.queueLength())
+		assert.equal(3, taxiQueue.taxiQueueLength())
+
+		// after people leave the queue
+		taxiQueue.leaveQueue();
+		taxiQueue.leaveQueue();
+		taxiQueue.leaveQueue();
+		taxiQueue.leaveQueue();
+		taxiQueue.leaveQueue();
+
+		assert.equal(31, taxiQueue.queueLength());
+		assert.equal(3, taxiQueue.taxiQueueLength())
+
+		// after the taxi has departured
+		taxiQueue.taxiDepart()
+		taxiQueue.taxiDepart()
+		taxiQueue.taxiDepart()
+
+		assert.equal(7, taxiQueue.queueLength())
+		assert.equal(1, taxiQueue.taxiQueueLength())
 	});
 });
