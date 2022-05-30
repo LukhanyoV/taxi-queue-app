@@ -10,42 +10,45 @@ const departBtn = document.querySelector(".depart")
 const taxiQueue = TaxiQueue();
 
 // write your DOM code here.
-//
+// when the page loads display the current values
+// display current taxi count
 taxisCount.innerHTML = taxiQueue.taxiQueueLength()
-//
+// display current passengers count
 passengersCount.innerHTML = taxiQueue.queueLength()
 
 // DOM events
-//
+// listen for when the join queue button is click
 joinQueue.addEventListener("click", function () {
-    //
+    // increase the number of people in the queue
     taxiQueue.joinQueue()
-    //
+    // display the number of people in the queue
     passengersCount.innerHTML = taxiQueue.queueLength()
 })
 
-//
+// listen for when the leave queue button is clicked
 leaveQueue.addEventListener("click", function () {
-    //
+    // decrease the number of people in the queue
     taxiQueue.leaveQueue()
-    //
+    // display the number of people in the queue
     passengersCount.innerHTML = taxiQueue.queueLength()
 })
 
-//
+// listen for when the join taxi queue button is clicked
 joinTaxiQueue.addEventListener("click", function () {
-    //
+    // increase the number of taxi in the queue
     taxiQueue.joinTaxiQueue()
-    //
+    // show the number of taxis that are in the queue
     taxisCount.innerHTML = taxiQueue.taxiQueueLength()
 })
 
-//
+// listene for when the depart button is pressed
 departBtn.addEventListener("click", function () {
-    //
+    // this function will check for the number of people available
+    // and also it will chehck for the number of taxis available
+    // before allowing the taxi to leave
     taxiQueue.taxiDepart()
-    //
+    // show the number of taxis available after depature
     taxisCount.innerHTML = taxiQueue.taxiQueueLength()
-    //
+    // show the number of passangers after depature
     passengersCount.innerHTML = taxiQueue.queueLength()
 })
